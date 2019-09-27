@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        Modificar Motores
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Modificar Motor</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+
+			<h:outputLabel for="idCategoria" value="Id "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="idCategoria"
+				styleClass="form-control"
+				value="#{categoriaController.categoria.idCategoria}" required="true" />
+			<h:outputLabel for="descrpcionCategoria" value="Nombres "
+				styleClass="control-label" />
+
+			<h:outputLabel for="descrpcionCategoria" value="Nombres "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="nombreMotor"
+				styleClass="form-control" style="margin-bottom:20px;"
+				value="#{categoriaController.categoria.descrpcionCategoria}"
+				maxlength="30" required="true" />
+
+			<br />
+			<p:commandButton value="Modificar"
+				actionListener="#{categoriaController.modificar()}"
+				style="margin-bottom:20px;" styleClass="btn btn-primary "
+				update="@form" action="listCategoria?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listaCategoria?faces-redirect=true" immediate="true"
+				style="margin-bottom:20px;" styleClass="btn btn-default"
+				ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

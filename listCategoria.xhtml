@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="master.xhtml">
+	<ui:define name="title">
+        .:Listado de Categoria:.
+    </ui:define>
+	<ui:define name="titleCont">
+		<span>Categoria </span>
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<div class="row" align="center">
+				<p:commandButton value="Nuevo"
+					action="#{categoriaController.nuevoCategoria()}"
+					styleClass="btn btn-primary" ajax="false"
+					style="transition:1s ;  border:none; position: fixed; border-radius: 50%; width: 70px;  height: 70px; right: 50px; bottom: 20px; z-index:10; text-align:center; padding:0px;" />
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						<p:dataTable id="lstCategoria" var="mot"
+							value="#{categoriaController.listaCategorias}" paginator="true"
+							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
+							rows="10" styleClass="table table-bordered"
+							emptyMessage="No existen registros" rowIndexVar="item"
+							style="margin-bottom:0">
+
+							<p:column headerText="Id" sortBy="#{mot.idCategoria}" filterBy="#{mot.idCategoria}" filterMatchMode="contains" filterStyle="width: 80%">
+								<h:outputText value="#{mot.idCategoria}" />
+							</p:column>
+
+
+							<p:column headerText="Nombre" sortBy="#{mot.descrpcionCategoria}" filterBy="#{mot.descrpcionCategoria}" filterMatchMode="contains" filterStyle="width: 80%">
+								<h:outputText value="#{mot.descrpcionCategoria}" />
+							</p:column>
+							
+							<p:column headerText="Operacion">
+
+								<h:commandLink action="listCategoria" value="eliminar"
+								style="color:red; display:flex;"
+									actionListener="#{categoriaController.eliminar(mot)}" />
+								<h:commandLink  value="Modificar"
+									style="color:blue;"
+									action="#{categoriaController.Modifcategoria(mot)}"/>	
+							</p:column>
+						</p:dataTable>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+	<ui:define name="footerCont">
+	</ui:define>
+</ui:composition>
+
+</html>
